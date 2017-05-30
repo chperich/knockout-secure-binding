@@ -89,14 +89,7 @@ function nodeParamsToObject(node, parser) {
     return params;
 }
 
-
-// Note we do not seem to need both getBindings and getBindingAccessors; just
-// the latter appears to suffice.
-//
-// Return the name/valueAccessor pairs.
-// (undocumented replacement for getBindings)
-// see https://github.com/knockout/knockout/pull/742
-function getBindingAccessors(node, context) {
+function getBindings(node, context) {
     var bindings = {},
         component_name,
         parser = new Parser(node, context, this.globals),
@@ -126,11 +119,27 @@ function getBindingAccessors(node, context) {
     return bindings;
 }
 
+ko.utils.objectForEach = function (obj, action) {
+    for (var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+            action(prop, obj[prop]);
+        }
+    }
+};
+
+ko.expressionRewriting._twoWayBindings = {};
+ko.expressionRewriting._twoWayBindings['checked'] = true;
+ko.expressionRewriting._twoWayBindings['hasfocus'] = true;
+ko.expressionRewriting._twoWayBindings['hasFocus'] = true;
+ko.expressionRewriting._twoWayBindings['selectedOptions'] = true;
+ko.expressionRewriting._twoWayBindings['textInput'] = true;
+ko.expressionRewriting._twoWayBindings['value'] = true;
+ko.exportSymbol('unwrap', ko.utils.unwrapObservable); 
 
 ko.utils.extend(secureBindingsProvider.prototype, {
     registerBindings: registerBindings,
     nodeHasBindings: nodeHasBindings,
-    getBindingAccessors: getBindingAccessors,
+    getBindings: getBindings,
     getBindingsString: getBindingsString,
     nodeParamsToObject: nodeParamsToObject,
     Parser: Parser

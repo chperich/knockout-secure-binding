@@ -36,6 +36,19 @@ Node = (function () {
     // logic
     '&&': function logic_and(a, b) { return a && b; },
     '||': function logic_or(a, b) { return a || b; },
+    '?': function cond(a, b) { return a || b },
+    '-:': function cond_left(a, b) {
+            if(!!a) { 
+              return b;
+            }
+            return null;
+          },
+    ':-': function cond_right(a, b) {
+            if(!a) { 
+              return b;
+            }
+            return null;
+          }
   };
 
   /* In order of precedence, see:
@@ -149,7 +162,7 @@ Expression = (function () {
       if (!op) {
         break;
       }
-      if (op.precedence > root.op.precedence) {
+      if (op.precedence >= root.op.precedence) {
         // rebase
         root = new Node(root, op, value);
         leaf = root;
