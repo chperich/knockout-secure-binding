@@ -10,7 +10,7 @@ var fs = require('fs'),
     watch = require('gulp-watch'),
     url = require('url'),
     colors = require('colors'),
-	nugetpack = require('gulp-nuget-pack'),
+    nugetpack = require('gulp-nuget-pack'),
     yaml = require('js-yaml'),
 
     now = new Date(),
@@ -40,7 +40,7 @@ var fs = require('fs'),
       '}(function(ko, exports, undefined) {\n',
 
     tail = '    \n' +
-    '        ko.secureBindingsProvider = secureBindingsProvider;\n' +
+    '    ko.secureBindingsProvider = secureBindingsProvider;\n' +
     '    \n' +
     '    return secureBindingsProvider;\n' +
     '}));';
@@ -95,7 +95,7 @@ gulp.task('default', ['concat', 'minify']);
 gulp.task('nuget-pack', function(callback) {
     nugetpack({
             id: "KnockoutSecureBinding",
-            version: "1.0.0",
+            version: "1.0.2",
             authors: "Brian M Hunt",
             owners: "Brian M Hunt",
             description: "KnockoutSecureBinding helps in enabling CSP on pages using knockout",
