@@ -1,4 +1,4 @@
-/*! knockout-secure-binding - v0.5.5 - 2017-05-31
+/*! knockout-secure-binding - v1.0.2 - 2017-06-07
  *  https://github.com/brianmhunt/knockout-secure-binding
  *  Copyright (c) 2013 - 2017 Brian M Hunt; License: MIT */
 ;(function(factory) {
@@ -775,6 +775,7 @@ Parser = (function () {
         nodes.push(op);
       }
 
+      ch = this.ch;
       if (ch === '(') {
         this.next();
         nodes.push(this.expression());
@@ -842,7 +843,7 @@ Parser = (function () {
                 ch = this.white();
             }
             
-            func_args.push(this.value());
+            func_args.push(this.expression());
             ch = this.white();
         }
 
@@ -1165,7 +1166,7 @@ ko.utils.extend(secureBindingsProvider.prototype, {
     nodeParamsToObject: nodeParamsToObject,
     Parser: Parser
 });    
-        ko.secureBindingsProvider = secureBindingsProvider;
+    ko.secureBindingsProvider = secureBindingsProvider;
     
     return secureBindingsProvider;
 }));
