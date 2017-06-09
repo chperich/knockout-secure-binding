@@ -1,4 +1,4 @@
-/*! knockout-secure-binding - v1.0.2 - 2017-06-08
+/*! knockout-secure-binding - v1.0.4 - 2017-06-09
  *  https://github.com/brianmhunt/knockout-secure-binding
  *  Copyright (c) 2013 - 2017 Brian M Hunt; License: MIT */
 ;(function(factory) {
@@ -1156,7 +1156,6 @@ ko.expressionRewriting._twoWayBindings['hasFocus'] = true;
 ko.expressionRewriting._twoWayBindings['selectedOptions'] = true;
 ko.expressionRewriting._twoWayBindings['textInput'] = true;
 ko.expressionRewriting._twoWayBindings['value'] = true;
-ko.exportSymbol('unwrap', ko.utils.unwrapObservable); 
 
 ko.utils.extend(secureBindingsProvider.prototype, {
     registerBindings: registerBindings,
