@@ -95,7 +95,7 @@ gulp.task('default', ['concat', 'minify']);
 gulp.task('nuget-pack', function(callback) {
     nugetpack({
             id: "KnockoutSecureBinding",
-            version: "1.0.4",
+            version: "1.0.5",
             authors: "Brian M Hunt",
             owners: "Brian M Hunt",
             description: "KnockoutSecureBinding helps in enabling CSP on pages using knockout",

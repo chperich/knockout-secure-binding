@@ -322,7 +322,7 @@ Parser = (function () {
     this.next(":");
     this.white();
     rhs = this.expression();
-    rhsExpNode = new Expression([cond, Expression.operators[':-'], lhs]);
+    rhsExpNode = new Expression([cond, Expression.operators[':-'], rhs]);
 
     return new Expression([lhsExpNode, Expression.operators['?'], rhsExpNode]);
   };

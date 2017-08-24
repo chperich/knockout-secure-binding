@@ -1,4 +1,4 @@
-/*! knockout-secure-binding - v1.0.4 - 2017-06-09
+/*! knockout-secure-binding - v1.0.5 - 2017-08-24
  *  https://github.com/brianmhunt/knockout-secure-binding
  *  Copyright (c) 2013 - 2017 Brian M Hunt; License: MIT */
 ;(function(factory) {
@@ -748,7 +748,7 @@ Parser = (function () {
     this.next(":");
     this.white();
     rhs = this.expression();
-    rhsExpNode = new Expression([cond, Expression.operators[':-'], lhs]);
+    rhsExpNode = new Expression([cond, Expression.operators[':-'], rhs]);
 
     return new Expression([lhsExpNode, Expression.operators['?'], rhsExpNode]);
   };
