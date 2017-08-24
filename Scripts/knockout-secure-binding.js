@@ -1,4 +1,4 @@
-/*! knockout-secure-binding - v1.0.5 - 2017-08-24
+/*! knockout-secure-binding - v1.0.6 - 2017-08-24
  *  https://github.com/brianmhunt/knockout-secure-binding
  *  Copyright (c) 2013 - 2017 Brian M Hunt; License: MIT */
 ;(function(factory) {
@@ -263,8 +263,8 @@ Node = (function () {
     //    TODO: 'in': function (a, b) { return a in b; },
     //    TODO: 'instanceof': function (a, b) { return a instanceof b; },
     // equality
-    '==': function equal(a, b) { return a === b; },
-    '!=': function ne(a, b) { return a !== b; },
+    '==': function equal(a, b) { return a == b; },
+    '!=': function ne(a, b) { return a != b; },
     '===': function sequal(a, b) { return a === b; },
     '!==': function sne(a, b) { return a !== b; },
     // bitwise
