@@ -1,4 +1,4 @@
-/*! knockout-secure-binding - v1.0.2 - 2017-06-07
+/*! knockout-secure-binding - v1.0.5 - 2017-08-24
  *  https://github.com/brianmhunt/knockout-secure-binding
  *  Copyright (c) 2013 - 2017 Brian M Hunt; License: MIT */
 ;(function(factory) {
@@ -329,7 +329,7 @@ Node = (function () {
     if (typeof(leaf) === 'function') {
       // Expressions on observables are nonsensical, so we unwrap any
       // function values (e.g. identifiers).
-      return ko.unwrap(leaf());
+      return ko.utils.unwrapObservable(leaf());
     }
 
     // primitives
@@ -341,7 +341,7 @@ Node = (function () {
     if (leaf instanceof Identifier || leaf instanceof Expression) {
       // lhs is passed in as the parent of the leaf. It will be defined in
       // cases like a.b.c as 'a' for 'b' then as 'b' for 'c'.
-      return ko.unwrap(leaf.get_value(member_of));
+      return ko.utils.unwrapObservable(leaf.get_value(member_of));
     }
 
     if (leaf instanceof Node) {
@@ -748,7 +748,7 @@ Parser = (function () {
     this.next(":");
     this.white();
     rhs = this.expression();
-    rhsExpNode = new Expression([cond, Expression.operators[':-'], lhs]);
+    rhsExpNode = new Expression([cond, Expression.operators[':-'], rhs]);
 
     return new Expression([lhsExpNode, Expression.operators['?'], rhsExpNode]);
   };
@@ -1095,7 +1095,7 @@ function nodeParamsToObject(node, parser) {
             } else {
                 return ko.computed({
                     read: function() {
-                        return ko.unwrap(paramValueComputed());
+                        return ko.utils.unwrapObservable(paramValueComputed());
                     },
                     write: ko.isWriteableObservable(paramValue) && function(value) {
                         paramValueComputed()(value);
@@ -1156,7 +1156,6 @@ ko.expressionRewriting._twoWayBindings['hasFocus'] = true;
 ko.expressionRewriting._twoWayBindings['selectedOptions'] = true;
 ko.expressionRewriting._twoWayBindings['textInput'] = true;
 ko.expressionRewriting._twoWayBindings['value'] = true;
-ko.exportSymbol('unwrap', ko.utils.unwrapObservable); 
 
 ko.utils.extend(secureBindingsProvider.prototype, {
     registerBindings: registerBindings,

@@ -73,7 +73,7 @@ function nodeParamsToObject(node, parser) {
             } else {
                 return ko.computed({
                     read: function() {
-                        return ko.unwrap(paramValueComputed());
+                        return ko.utils.unwrapObservable(paramValueComputed());
                     },
                     write: ko.isWriteableObservable(paramValue) && function(value) {
                         paramValueComputed()(value);
@@ -134,7 +134,6 @@ ko.expressionRewriting._twoWayBindings['hasFocus'] = true;
 ko.expressionRewriting._twoWayBindings['selectedOptions'] = true;
 ko.expressionRewriting._twoWayBindings['textInput'] = true;
 ko.expressionRewriting._twoWayBindings['value'] = true;
-ko.exportSymbol('unwrap', ko.utils.unwrapObservable); 
 
 ko.utils.extend(secureBindingsProvider.prototype, {
     registerBindings: registerBindings,
